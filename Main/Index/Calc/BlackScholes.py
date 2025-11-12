@@ -1,21 +1,19 @@
+import os
 from alpaca.trading.client import TradingClient
-from alpaca.trading.requests import GetAssetsRequest
 
-# Initialize the trading client for paper trading
-trading_client = TradingClient(
-    api_key="PKFCNT5XIAUJTKGKBBMQCHRAHE",
-    secret_key="7oohUukYy6ACFc4YVywTZiY34NhsGKtu5DxYsacghLus",
-    paper=True  # This makes sure it connects to paper-api.alpaca.markets
-)
+def startScreen():
+    s = int(input("What do you want to do \n1. Check connection to Alpaca \n2. Check if something is tradeable\nEnter Here: "))
+    if s == 1:
+        login()
+    else:
+        print("Hello")
 
-# Get account information
-account = trading_client.get_account()
+def login():   
+    api_key = os.getenv("APCA_API_KEY_ID")
+    secret_key = os.getenv("APCA_API_SECRET_KEY")
+    trading_client = TradingClient(api_key, secret_key, paper=True)
+    account = trading_client.get_account()
+    print(f"Connected to Alpaca!")
 
-# Check if your account is restricted
-if account.trading_blocked:
-    print("Account is currently restricted from trading.")
-else:
-    print("Trading is active.")
+startScreen()
 
-# Show available buying power
-print(f"${account.buying_power} is available as buying power.")
