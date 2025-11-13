@@ -31,6 +31,4 @@ def tradeSearch():
         print("We can't trade",assetSearch)
         startScreen()
 
-
-
 startScreen()
