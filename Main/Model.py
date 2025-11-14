@@ -39,7 +39,8 @@ def getStockData(symbol):
     )
     stock_bars = data_client.get_stock_bars(request_params)
     df = stock_bars.df
-    print(df.head())
+    h = df.head
+    print(h())
 
 def startScreen():
     s = int(input("What do you want to do \n1. Check if something is tradeable\n2. Get stock data\nEnter Here: "))
